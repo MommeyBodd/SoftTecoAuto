@@ -9,7 +9,7 @@ const ImageCard = props => {
     return (
         <View style={container}>
             <View style={sub}>
-                <Image style={cover} source={require(imgName)}/>
+                <Image style={cover} source={{ uri: 'https://github.com/MommeyBodd/SoftTecoAuto/blob/master/src/components/uikit/img/1.png'}}/>
             </View>
             <Text style={ h1 }>{ name }</Text>
         </View>
