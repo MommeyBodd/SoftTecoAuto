@@ -2,14 +2,13 @@ import React from 'react'
 import { Text, View, Image, StyleSheet } from 'react-native'
 import { h, w } from '../../../constats'
 
-const ImageCard = props => {
+const ImageCard = ({ name })  => {
     const { container, cover, h1, sub } = styles;
-    console.log('image', props.image);
-    const imgName = props.image;
+
     return (
         <View style={container}>
             <View style={sub}>
-                <Image style={cover} source={{ uri: 'https://github.com/MommeyBodd/SoftTecoAuto/blob/master/src/components/uikit/img/1.png'}}/>
+                <Image style={cover} source={{uri: 'https://raw.githubusercontent.com/MommeyBodd/SoftTecoAuto/master/src/components/uikit/img/'+ name +'.png'}}/>
             </View>
             <Text style={ h1 }>{ name }</Text>
         </View>
@@ -19,12 +18,14 @@ const ImageCard = props => {
 
 const styles = StyleSheet.create({
     container: {
-        width: w / 2
+        width: w / 2.1,
+        paddingVertical: 10
     },
     sub: {
         padding: 10,
     },
     h1: {
+        paddingTop: 10,
         fontFamily: 'AvenirNext-DemiBold',
         fontSize: 18,
         alignSelf: 'center',
