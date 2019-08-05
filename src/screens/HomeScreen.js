@@ -4,6 +4,7 @@ import { View } from 'react-native'
 import  Header from '../components/uikit/Header'
 import  ImageCard from '../components/uikit/ImageCard'
 import  MainLayout from '../components/uikit/MainLayout'
+import { SOFTTECOFILM_DETAILS } from '../routes'
 
 const url = 'http://jsonplaceholder.typicode.com/posts';
 
@@ -26,6 +27,7 @@ export default class HomeScreen extends Component {
 
     render() {
         const { title, data } = this.state;
+        const { navigation } = this.props;
         let notUnique = data.map(({userId}) => userId);
         let unique = [...new Set(notUnique)];
         return (
@@ -34,7 +36,11 @@ export default class HomeScreen extends Component {
                 <MainLayout>
                     {
                         unique.map(item => (
-                            <ImageCard name={item} key={item}/>
+                            <ImageCard
+                                name={item}
+                                key={item}
+                                onPress={() => navigation.navigate(SOFTTECOFILM_DETAILS, data.filter( film => film.userId === item))}
+                            />
                         ))
                     }
                 </MainLayout>

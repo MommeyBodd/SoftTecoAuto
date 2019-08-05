@@ -1,19 +1,20 @@
 import React from 'react'
-import { Text, View, Image, StyleSheet } from 'react-native'
+import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { h, w } from '../../../constats'
 
-const ImageCard = ({ name })  => {
+const ImageCard = ({ name, onPress })  => {
     const { container, cover, h1, sub } = styles;
 
     return (
-        <View style={container}>
-            <View style={sub}>
-                <Image style={cover} source={{uri: 'https://raw.githubusercontent.com/MommeyBodd/SoftTecoAuto/master/src/components/uikit/img/'+ name +'.png'}}/>
+        <TouchableOpacity onPress={onPress}>
+            <View style={container}>
+                <View style={sub}>
+                    <Image style={cover} source={{uri: 'https://raw.githubusercontent.com/MommeyBodd/SoftTecoAuto/master/src/components/uikit/img/'+ name +'.png'}}/>
+                </View>
+                <Text style={ h1 }>{ name }</Text>
             </View>
-            <Text style={ h1 }>{ name }</Text>
-        </View>
+        </TouchableOpacity>
     )
-
 };
 
 const styles = StyleSheet.create({
