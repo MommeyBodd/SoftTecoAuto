@@ -1,15 +1,23 @@
 import React from 'react'
-import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import {
+    Text,
+    View,
+    Image,
+    StyleSheet,
+    TouchableOpacity
+} from 'react-native'
+
 import { h, w } from '../../../constats'
 
 const ImageCard = ({ name, onPress })  => {
     const { container, cover, h1, sub } = styles;
-
     return (
-        <TouchableOpacity onPress={onPress}>
-            <View style={container}>
-                <View style={sub}>
-                    <Image style={cover} source={{uri: 'https://raw.githubusercontent.com/MommeyBodd/SoftTecoAuto/master/src/components/uikit/img/'+ name +'.png'}}/>
+        <TouchableOpacity onPress={ onPress }>
+            <View style={ container }>
+                <View style={ sub }>
+                    <Image
+                        style={ cover }
+                        source={{uri: 'https://raw.githubusercontent.com/MommeyBodd/SoftTecoAuto/master/src/components/uikit/img/'+ name +'.png'}}/>
                 </View>
                 <Text style={ h1 }>{ name }</Text>
             </View>
@@ -27,7 +35,6 @@ const styles = StyleSheet.create({
     },
     h1: {
         paddingTop: 10,
-        fontFamily: 'AvenirNext-DemiBold',
         fontSize: 18,
         alignSelf: 'center',
         textAlign: 'center',

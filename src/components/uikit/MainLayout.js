@@ -14,12 +14,12 @@ const Layout = props => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 30,
+        marginTop: 10,
         flexDirection: 'row',
         flexWrap: 'wrap',
         flexShrink: 2,
         justifyContent: 'space-around',
-        marginBottom: 150
+        marginBottom: 100
     }
 });
 

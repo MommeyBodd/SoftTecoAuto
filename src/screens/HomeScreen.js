@@ -6,45 +6,49 @@ import  ImageCard from '../components/uikit/ImageCard'
 import  MainLayout from '../components/uikit/MainLayout'
 import { SOFTTECOFILM_DETAILS } from '../routes'
 
-const url = 'http://jsonplaceholder.typicode.com/posts';
+const URL = 'http://jsonplaceholder.typicode.com/posts';
 
 export default class HomeScreen extends Component {
-    state = {
-        title: 'SoftTeco Film',
-        data: []
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: 'SoftTeco Film',
+            data: []
+        };
+    }
 
-    componentDidMount = async() => {
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            this.setState({ data })
-        } catch (e) {
-            throw e
-        }
-
-    };
+    componentDidMount(){
+        fetch(URL)
+            .then(res=>res.json())
+            .then(res=>this.setState({
+                data:res
+            }))
+    }
 
     render() {
-        const { title, data } = this.state;
-        const { navigation } = this.props;
-        let notUnique = data.map(({userId}) => userId);
-        let unique = [...new Set(notUnique)];
+        const { navigate } = this.props.navigation;
+        const notUnique = this.state.data.map(dataItem => dataItem.userId);
+        const unique = [...new Set(notUnique)];
         return (
             <View>
-                <Header title={title}/>
+                <Header title={this.state.title}/>
                 <MainLayout>
                     {
-                        unique.map(item => (
-                            <ImageCard
-                                name={item}
-                                key={item}
-                                onPress={() => navigation.navigate(SOFTTECOFILM_DETAILS, data.filter( film => film.userId === item))}
-                            />
+                        unique.map((item, id) => (
+                            <React.Fragment key={id}>
+                                <ImageCard
+                                    name={item}
+                                    onPress={() => {
+                                        const attributes = this.state.data.filter(film => film.userId === item);
+                                        navigate('SOFTTECOFILM_DETAILS',  { attributes }  );
+                                    }}
+                                />
+                            </React.Fragment>
+
                         ))
                     }
                 </MainLayout>
             </View>
         );
     }
-}
+};
